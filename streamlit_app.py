@@ -13,4 +13,4 @@ streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 fruit_listed = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 foo = fruit_listed.dtypes.astype(str)
-st.write(foo)
+fruit_listed.write(foo)
