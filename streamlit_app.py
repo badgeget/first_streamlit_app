@@ -25,15 +25,19 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 foo = fruits_to_show.astype(str)
 streamlit.write(foo)
 
+def get_fruityvice_data(this_fruit_choice);
+   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
+   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+   return fruityvice_normalized
+
 streamlit.header("Fruityvice Fruit Advice!")
 try:
   fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
     streamlit.error("Please select a fruit to get information.")
   else:
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
-    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    bar = fruityvice_normalized.astype(str)
+    back_from_function = get_fruityvice_data(fruit_choice)
+    bar = back_from_function.astype(str)
     streamlit.write(bar)
 except URLError as e:
   streamlit.error()
